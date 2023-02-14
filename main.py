@@ -4,6 +4,7 @@ pygame.init()
 
 # import custom classes
 from paddle import Paddle
+from ball import Ball
 
 # define some colors
 ORANGE = (255, 153, 0)
@@ -18,10 +19,14 @@ pygame.display.set_caption("Pong")
 paddleA = Paddle(WHITE, 100, 10, 200, 0)
 paddleB = Paddle(WHITE, 100, 10, 200, 690)
 
+# create ball
+ball = Ball(WHITE, 10, 10, 245, 355)
+
 # create sprite group and add sprites to group
 all_sprites_list = pygame.sprite.Group()
 all_sprites_list.add(paddleA)
 all_sprites_list.add(paddleB)
+all_sprites_list.add(ball)
 
 # flag to determine if game is ongoing
 continue_game = True
