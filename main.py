@@ -55,6 +55,16 @@ while continue_game:
     # --- game logic will go here
     all_sprites_list.update()
 
+    #Check if the ball is bouncing against any of the 4 walls:
+    if ball.rect.x>=490:
+        ball.velocity[0] = -ball.velocity[0]
+    if ball.rect.x<=0:
+        ball.velocity[0] = -ball.velocity[0]
+    if ball.rect.y>690:
+        ball.velocity[1] = -ball.velocity[1]
+    if ball.rect.y<0:
+        ball.velocity[1] = -ball.velocity[1]
+
     # --- Drawing code goes here
     screen.fill(ORANGE)  # set screen to orange
     pygame.draw.line(screen, WHITE, [0, 350], [500, 350], 5)
