@@ -65,6 +65,10 @@ while continue_game:
     if ball.rect.y<0:
         ball.velocity[1] = -ball.velocity[1]
 
+    #Detect collisions between the ball and the paddles
+    if pygame.sprite.collide_mask(ball, paddleA) or pygame.sprite.collide_mask(ball, paddleB):
+      ball.bounce()
+
     # --- Drawing code goes here
     screen.fill(ORANGE)  # set screen to orange
     pygame.draw.line(screen, WHITE, [0, 350], [500, 350], 5)
