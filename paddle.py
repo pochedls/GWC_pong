@@ -22,3 +22,13 @@ class Paddle(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
+    def moveLeft(self, pixels):
+        self.rect.x -= pixels
+        if self.rect.x < 0:
+            self.rect.x = 0
+
+    def moveRight(self, pixels):
+        self.rect.x += pixels
+        if self.rect.x > 400:
+            self.rect.x = 400
+

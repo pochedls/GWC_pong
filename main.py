@@ -36,6 +36,17 @@ while continue_game:
         if event.type == pygame.QUIT:  # user clicked close
             continue_game = False  # flag to discontinue game
 
+    #Moving the paddles when the user uses the arrow keys (player A) or "W/S" keys (player B) 
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_a]:
+        paddleA.moveLeft(5)
+    if keys[pygame.K_s]:
+        paddleA.moveRight(5)
+    if keys[pygame.K_RIGHT]:
+        paddleB.moveRight(5)
+    if keys[pygame.K_LEFT]:
+        paddleB.moveLeft(5)    
+
     # --- game logic will go here
     all_sprites_list.update()
 
