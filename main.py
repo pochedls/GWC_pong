@@ -8,6 +8,7 @@ from ball import Ball
 
 # define some colors
 ORANGE = (255, 153, 0)
+LIGHTORANGE = (255, 200, 100)
 WHITE = (255, 255, 255)
 
 # create a game window
@@ -16,8 +17,8 @@ screen = pygame.display.set_mode(window_size)
 pygame.display.set_caption("Pong")
 
 # create paddles
-paddleA = Paddle(WHITE, 100, 10, 200, 0)
-paddleB = Paddle(WHITE, 100, 10, 200, 690)
+paddleA = Paddle(WHITE, 100, 10, 200, 90)
+paddleB = Paddle(WHITE, 100, 10, 200, 600)
 
 # create ball
 ball = Ball(WHITE, 10, 10, 245, 355)
@@ -33,6 +34,10 @@ continue_game = True
 
 # clock is used to control how fast the screen updates
 clock = pygame.time.Clock()
+
+# intialize player scores
+scoreA = 0
+scoreB = 0
 
 # ---------- Main Program Loop ------------
 while continue_game:
@@ -62,8 +67,10 @@ while continue_game:
         ball.velocity[0] = -ball.velocity[0]
     if ball.rect.y>690:
         ball.velocity[1] = -ball.velocity[1]
+        scoreA += 1
     if ball.rect.y<0:
         ball.velocity[1] = -ball.velocity[1]
+        scoreB += 1
 
     #Detect collisions between the ball and the paddles
     if pygame.sprite.collide_mask(ball, paddleA) or pygame.sprite.collide_mask(ball, paddleB):
@@ -73,6 +80,12 @@ while continue_game:
     screen.fill(ORANGE)  # set screen to orange
     pygame.draw.line(screen, WHITE, [0, 350], [500, 350], 5)
     all_sprites_list.draw(screen)
+
+    font = pygame.font.Font(None, 74)
+    text = font.render(str(scoreA), 1, LIGHTORANGE)
+    screen.blit(text, (20, 10))
+    text = font.render(str(scoreB), 1, LIGHTORANGE)
+    screen.blit(text, (20, 640))
 
     # --- update display with what was drawn
     pygame.display.flip()
